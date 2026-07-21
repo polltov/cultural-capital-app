@@ -24,3 +24,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+:root {
+  --cc-cream: #f5ede0;
+  --cc-graphite: #22293a;
+  --cc-terracotta: #a34a2f;
+  --cc-sage: #7c8a6c;
+  --cc-sand: #c29a5b;
+}
+body { background: var(--cc-cream); color: var(--cc-graphite); font-family: Georgia, serif; }

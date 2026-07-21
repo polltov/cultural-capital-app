@@ -7,6 +7,7 @@ export default defineConfig({
     setupFiles: ["./tests/setup.ts"],
     include: ["tests/**/*.test.ts", "tests/**/*.test.tsx"],
     exclude: ["tests/e2e/**"],
+    fileParallelism: false,
     coverage: { reporter: ["text", "html"], exclude: ["**/*.d.ts", "tests/**"] },
   },
   resolve: {

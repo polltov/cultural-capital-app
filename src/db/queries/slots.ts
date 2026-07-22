@@ -1,4 +1,4 @@
-import { and, asc, eq, gt, gte, sql } from "drizzle-orm";
+import { and, asc, eq, gt, gte, inArray, sql } from "drizzle-orm";
 import type { db } from "@/src/db/client";
 import { tourSlots } from "@/src/db/schema";
 
@@ -13,6 +13,41 @@ export async function listUpcomingSlotsForTour(d: DB, tourId: string) {
       gt(sql`${tourSlots.seatsTotal} - ${tourSlots.seatsBooked}`, 0),
     ),
   ).orderBy(asc(tourSlots.startsAt));
+}
+
+/**
+ * Returns the earliest upcoming active slot (with seats > 0) for each of the
+ * given tour ids. Result is keyed by tour id; tours without any upcoming slot
+ * are absent from the map.
+ */
+export async function earliestUpcomingSlotsByTour(
+  d: DB,
+  tourIds: string[],
+): Promise<Map<string, { id: string; startsAt: Date; seatsTotal: number; seatsBooked: number }>> {
+  const out = new Map<string, { id: string; startsAt: Date; seatsTotal: number; seatsBooked: number }>();
+  if (tourIds.length === 0) return out;
+  const rows = await d
+    .select()
+    .from(tourSlots)
+    .where(
+      and(
+        inArray(tourSlots.tourId, tourIds),
+        eq(tourSlots.status, "active"),
+        gte(tourSlots.startsAt, new Date()),
+        gt(sql`${tourSlots.seatsTotal} - ${tourSlots.seatsBooked}`, 0),
+      ),
+    )
+    .orderBy(asc(tourSlots.startsAt));
+  for (const r of rows) {
+    if (out.has(r.tourId)) continue;
+    out.set(r.tourId, {
+      id: r.id,
+      startsAt: r.startsAt,
+      seatsTotal: r.seatsTotal,
+      seatsBooked: r.seatsBooked,
+    });
+  }
+  return out;
 }
 
 export async function getSlotById(d: DB, id: string) {

@@ -107,25 +107,53 @@ export function CartClient() {
     });
   }
 
-  if (loading) return <p>Загрузка…</p>;
-  if (items.length === 0)
+  if (loading) {
     return (
-      <p>
-        Корзина пуста.{" "}
-        <Link href="/" className="underline">
-          Каталог
-        </Link>
+      <p
+        className="text-[13px] uppercase tracking-[0.2em]"
+        style={{ color: "var(--cc-slate)", fontFamily: "var(--font-sans-ui)" }}
+      >
+        Загрузка…
       </p>
     );
+  }
+
+  if (items.length === 0) {
+    return (
+      <div
+        className="rounded-lg px-6 py-5 text-[14px]"
+        style={{
+          background: "rgba(194,154,91,0.14)",
+          borderLeft: "2px solid var(--cc-sand)",
+          fontFamily: "var(--font-sans-ui)",
+          color: "var(--cc-slate)",
+        }}
+      >
+        Корзина пуста.{" "}
+        <Link href="/" className="text-terracotta font-bold hover:underline">
+          Вернуться в каталог →
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <div className="space-y-4">
+    <div className="grid gap-6">
       {removed.length > 0 && (
-        <div className="p-3 bg-yellow-50 border border-yellow-300 rounded">
+        <div
+          className="p-4 rounded-lg text-[13.5px]"
+          style={{
+            background: "rgba(232,180,90,0.18)",
+            borderLeft: "2px solid var(--cc-ochre)",
+            fontFamily: "var(--font-sans-ui)",
+            color: "var(--cc-ink)",
+          }}
+        >
           Некоторые позиции удалены: {removed.map((r) => r.reason).join(", ")}
         </div>
       )}
-      <ul className="space-y-3">
+
+      <ul className="grid gap-4">
         {items.map((i) => {
           const canPlusAdult = i.adult + i.child < i.seatsLeft;
           const canPlusChild = i.adult + i.child < i.seatsLeft;
@@ -133,19 +161,38 @@ export function CartClient() {
           const canMinusChild = i.child > 1;
           const line = i.adult * i.priceAdult + i.child * i.priceChild;
           return (
-            <li key={i.slotId} className="p-4 border rounded bg-white">
-              <div className="flex justify-between items-start">
+            <li
+              key={i.slotId}
+              className="bg-paper rounded-lg px-6 py-5"
+              style={{ border: "1px solid rgba(194,154,91,0.4)" }}
+            >
+              <div className="flex justify-between items-start gap-4">
                 <div>
-                  <div className="font-medium">{i.tourTitle}</div>
-                  <div className="text-sm text-black/60">
+                  <div
+                    className="text-[19px] text-ink leading-[1.2]"
+                    style={{ fontFamily: "var(--font-antiqua)" }}
+                  >
+                    {i.tourTitle}
+                  </div>
+                  <div
+                    className="text-[11px] uppercase tracking-[0.14em] font-bold mt-1.5"
+                    style={{
+                      color: "var(--cc-slate)",
+                      fontFamily: "var(--font-sans-ui)",
+                    }}
+                  >
                     {new Date(i.startsAt).toLocaleString("ru-RU")}
                   </div>
                 </div>
-                <button onClick={() => remove(i.slotId)} className="text-sm underline">
+                <button
+                  onClick={() => remove(i.slotId)}
+                  className="text-[11px] uppercase tracking-[0.14em] font-bold text-terracotta hover:underline"
+                  style={{ fontFamily: "var(--font-sans-ui)" }}
+                >
                   Удалить
                 </button>
               </div>
-              <div className="mt-3 grid grid-cols-2 gap-3 text-sm">
+              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
                 <Counter
                   label="Взрослых"
                   value={i.adult}
@@ -161,50 +208,122 @@ export function CartClient() {
                   hint={formatRub(i.priceChild)}
                 />
               </div>
-              <div className="mt-3 text-right font-medium">{formatRub(line)}</div>
+              <div
+                className="mt-4 pt-3 text-right text-[18px] text-ink"
+                style={{
+                  borderTop: "1px solid rgba(194,154,91,0.4)",
+                  fontFamily: "var(--font-antiqua)",
+                }}
+              >
+                {formatRub(line)}
+              </div>
             </li>
           );
         })}
       </ul>
-      <div className="text-right text-xl font-serif">Итого: {formatRub(total())}</div>
 
-      <form onSubmit={submit} className="space-y-3 mt-6">
+      <div
+        className="text-right text-[24px] text-ink"
+        style={{ fontFamily: "var(--font-antiqua)" }}
+      >
+        Итого: {formatRub(total())}
+      </div>
+
+      <form
+        onSubmit={submit}
+        className="bg-paper rounded-lg px-6 py-6 grid gap-4"
+        style={{ border: "1px solid rgba(194,154,91,0.4)" }}
+      >
+        <div
+          className="text-[11px] tracking-[0.28em] uppercase text-terracotta font-bold"
+          style={{ fontFamily: "var(--font-sans-ui)" }}
+        >
+          Ваши контакты
+        </div>
         <label className="block">
-          Имя
+          <span
+            className="text-[11px] uppercase tracking-[0.14em] font-bold"
+            style={{
+              color: "var(--cc-slate)",
+              fontFamily: "var(--font-sans-ui)",
+            }}
+          >
+            Имя
+          </span>
           <input
             required
             minLength={2}
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="mt-1 w-full border p-2 rounded"
+            className="mt-1.5 w-full px-3 py-2.5 rounded-sm bg-ivory text-ink outline-none focus:border-terracotta transition-colors"
+            style={{
+              border: "1px solid rgba(34,41,58,0.25)",
+              fontFamily: "var(--font-serif-body)",
+            }}
           />
         </label>
         <label className="block">
-          Телефон
+          <span
+            className="text-[11px] uppercase tracking-[0.14em] font-bold"
+            style={{
+              color: "var(--cc-slate)",
+              fontFamily: "var(--font-sans-ui)",
+            }}
+          >
+            Телефон
+          </span>
           <input
             required
             pattern="[+\d\s()\-]{6,}"
             value={form.phone}
             onChange={(e) => setForm({ ...form, phone: e.target.value })}
-            className="mt-1 w-full border p-2 rounded"
+            className="mt-1.5 w-full px-3 py-2.5 rounded-sm bg-ivory text-ink outline-none focus:border-terracotta transition-colors"
+            style={{
+              border: "1px solid rgba(34,41,58,0.25)",
+              fontFamily: "var(--font-serif-body)",
+            }}
           />
         </label>
         <label className="block">
-          Email
+          <span
+            className="text-[11px] uppercase tracking-[0.14em] font-bold"
+            style={{
+              color: "var(--cc-slate)",
+              fontFamily: "var(--font-sans-ui)",
+            }}
+          >
+            Email
+          </span>
           <input
             type="email"
             required
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="mt-1 w-full border p-2 rounded"
+            className="mt-1.5 w-full px-3 py-2.5 rounded-sm bg-ivory text-ink outline-none focus:border-terracotta transition-colors"
+            style={{
+              border: "1px solid rgba(34,41,58,0.25)",
+              fontFamily: "var(--font-serif-body)",
+            }}
           />
         </label>
-        {error && <div className="text-red-700 text-sm">{error}</div>}
+        {error && (
+          <div
+            className="text-[13px] rounded-sm px-3 py-2"
+            style={{
+              background: "rgba(163,74,47,0.1)",
+              color: "var(--cc-terracotta)",
+              fontFamily: "var(--font-sans-ui)",
+            }}
+          >
+            {error}
+          </div>
+        )}
         <button
           disabled={submitting}
-          className="px-4 py-2 bg-[color:var(--cc-graphite)] text-white rounded"
+          className="mt-2 bg-ink text-paper px-6 py-3.5 rounded-sm text-[13px] font-bold tracking-[0.06em] hover:bg-[#0e1319] disabled:opacity-60"
+          style={{ fontFamily: "var(--font-sans-ui)" }}
         >
-          {submitting ? "Отправляем…" : "Оформить"}
+          {submitting ? "Отправляем…" : "Оформить заявку →"}
         </button>
       </form>
     </div>
@@ -225,26 +344,48 @@ function Counter({
   hint: string;
 }) {
   return (
-    <div className="flex items-center gap-3">
-      <span className="w-20">{label}</span>
+    <div
+      className="flex items-center gap-3 bg-ivory rounded-sm px-3 py-2.5"
+      style={{ border: "1px solid rgba(34,41,58,0.15)" }}
+    >
+      <span
+        className="text-[11px] uppercase tracking-[0.14em] font-bold w-20"
+        style={{ color: "var(--cc-slate)", fontFamily: "var(--font-sans-ui)" }}
+      >
+        {label}
+      </span>
       <button
         type="button"
         disabled={!onMinus}
         onClick={onMinus}
-        className="px-2 py-1 border rounded disabled:opacity-30"
+        className="w-7 h-7 rounded-full flex items-center justify-center bg-paper text-ink disabled:opacity-30"
+        style={{ border: "1px solid rgba(34,41,58,0.3)", fontFamily: "var(--font-sans-ui)" }}
+        aria-label={`Уменьшить ${label.toLowerCase()}`}
       >
         −
       </button>
-      <span className="w-6 text-center">{value}</span>
+      <span
+        className="w-6 text-center text-ink text-[16px]"
+        style={{ fontFamily: "var(--font-antiqua)" }}
+      >
+        {value}
+      </span>
       <button
         type="button"
         disabled={!onPlus}
         onClick={onPlus}
-        className="px-2 py-1 border rounded disabled:opacity-30"
+        className="w-7 h-7 rounded-full flex items-center justify-center bg-paper text-ink disabled:opacity-30"
+        style={{ border: "1px solid rgba(34,41,58,0.3)", fontFamily: "var(--font-sans-ui)" }}
+        aria-label={`Увеличить ${label.toLowerCase()}`}
       >
         +
       </button>
-      <span className="ml-auto text-black/60">{hint}</span>
+      <span
+        className="ml-auto text-[11px]"
+        style={{ color: "var(--cc-slate)", fontFamily: "var(--font-sans-ui)" }}
+      >
+        {hint}
+      </span>
     </div>
   );
 }

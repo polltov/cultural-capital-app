@@ -25,7 +25,7 @@ export function PublicShell({ children, withBlobs = true }: Props) {
           <span className="cc-blob b6" />
         </>
       )}
-      <div className="relative z-10 max-w-[1400px] mx-auto">
+      <div className="relative z-10 max-w-[1000px] mx-auto">
         <TopBar />
         {children}
         <Footer />

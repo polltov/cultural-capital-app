@@ -32,7 +32,7 @@ export async function createOrderAtomic(
           RETURNING tour_id
         `);
         const row = (updated as unknown as { rows?: Array<{ tour_id: string }> }).rows?.[0]
-          ?? (Array.isArray(updated) ? (updated as Array<{ tour_id: string }>)[0] : undefined);
+          ?? (Array.isArray(updated) ? ((updated as unknown) as Array<{ tour_id: string }>)[0] : undefined);
         if (!row) {
           throw new Error("SEATS_TAKEN");
         }
@@ -65,12 +65,15 @@ export async function createOrderAtomic(
         priceChildSnapshot: s.pc,
       })));
 
-      return ok({ orderId: order.id, orderNumber: order.orderNumber, totalAmount: total });
+      return ok({ orderId: order.id, orderNumber: order.orderNumber, totalAmount: total }) as Result<
+        { orderId: string; orderNumber: number; totalAmount: number },
+        OrderCreateError
+      >;
     });
   } catch (e) {
     const msg = e instanceof Error ? e.message : "unknown";
-    if (msg === "SEATS_TAKEN") return err("SEATS_TAKEN", "Мест уже нет, обновите корзину");
-    if (msg === "SLOT_MISSING") return err("SLOT_MISSING", "Слот не найден");
+    if (msg === "SEATS_TAKEN") return err<OrderCreateError>("SEATS_TAKEN", "Мест уже нет, обновите корзину");
+    if (msg === "SLOT_MISSING") return err<OrderCreateError>("SLOT_MISSING", "Слот не найден");
     throw e;
   }
 }

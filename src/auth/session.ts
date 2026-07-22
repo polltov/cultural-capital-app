@@ -1,9 +1,9 @@
 import { randomBytes, createHash } from "node:crypto";
 import { db } from "@/src/db/client";
 import { insertSession, findAdminByToken, deleteSession } from "@/src/db/queries/sessions";
+import { SESSION_COOKIE, SESSION_TTL_DAYS } from "@/src/auth/constants";
 
-export const SESSION_COOKIE = "cc_admin_session";
-export const SESSION_TTL_DAYS = 30;
+export { SESSION_COOKIE, SESSION_TTL_DAYS };
 
 function hash(token: string) {
   return createHash("sha256").update(token).digest("hex");

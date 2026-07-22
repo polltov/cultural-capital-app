@@ -14,23 +14,21 @@ type Props = {
  */
 export function PublicShell({ children, withBlobs = true }: Props) {
   return (
-    <div className="min-h-screen bg-cream py-10 px-5">
-      <div className="max-w-[1000px] mx-auto">
-        <div className="relative overflow-hidden rounded-2xl bg-ivory shadow-[0_30px_60px_-30px_rgba(34,41,58,0.4)]">
-          {withBlobs && (
-            <>
-              <span className="cc-blob b1" />
-              <span className="cc-blob b2" />
-              <span className="cc-blob b3" />
-              <span className="cc-blob b4" />
-              <span className="cc-blob b5" />
-              <span className="cc-blob b6" />
-            </>
-          )}
-          <TopBar />
-          {children}
-          <Footer />
-        </div>
+    <div className="min-h-screen bg-ivory relative overflow-hidden">
+      {withBlobs && (
+        <>
+          <span className="cc-blob b1" />
+          <span className="cc-blob b2" />
+          <span className="cc-blob b3" />
+          <span className="cc-blob b4" />
+          <span className="cc-blob b5" />
+          <span className="cc-blob b6" />
+        </>
+      )}
+      <div className="relative z-10 max-w-[1400px] mx-auto">
+        <TopBar />
+        {children}
+        <Footer />
       </div>
     </div>
   );

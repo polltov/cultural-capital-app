@@ -39,7 +39,7 @@
 
 * { box-sizing: border-box; }
 
-html, body { background: var(--cc-cream); color: var(--cc-ink); }
+html, body { background: var(--cc-ivory); color: var(--cc-ink); }
 
 body {
   font-family: var(--font-pt-serif), "PT Serif", Georgia, serif;

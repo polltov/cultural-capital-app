@@ -251,7 +251,17 @@ function WhyBand() {
     >
      <div className="max-w-[1000px] mx-auto px-10 max-md:px-6">
       <div className="grid gap-10 md:grid-cols-[1fr_1.35fr] md:gap-14 md:items-start">
-        <div>
+        <div className="relative">
+          <span
+            className="cc-stamp absolute -top-3 -right-1 md:right-4 w-[86px] h-[86px] max-md:hidden"
+            aria-hidden
+          >
+            <span>
+              СПб
+              <br />
+              2026
+            </span>
+          </span>
           <div
             className="text-[11px] tracking-[0.28em] uppercase text-terracotta font-bold mb-3"
             style={{ fontFamily: "var(--font-sans-ui)" }}
@@ -259,7 +269,7 @@ function WhyBand() {
             Про нас коротко
           </div>
           <h2
-            className="text-[38px] md:text-[46px] leading-[1.02] text-ink"
+            className="text-[38px] md:text-[46px] leading-[1.02] text-ink relative"
             style={{ fontFamily: "var(--font-antiqua)" }}
           >
             Пять причин,{" "}
@@ -285,7 +295,7 @@ function WhyBand() {
           {items.map((it, i) => (
             <li
               key={i}
-              className="grid grid-cols-[42px_44px_1fr] items-center gap-4 md:gap-5 py-4"
+              className="cc-why-row grid grid-cols-[42px_44px_1fr] items-center gap-4 md:gap-5 py-4"
               style={{
                 borderTop:
                   i === 0 ? "1px solid rgba(34,41,58,0.14)" : undefined,
@@ -293,13 +303,13 @@ function WhyBand() {
               }}
             >
               <span
-                className="text-[11px] tracking-[0.18em] text-terracotta font-bold"
+                className="cc-why-num text-[11px] tracking-[0.18em] text-terracotta font-bold transition-colors"
                 style={{ fontFamily: "var(--font-sans-ui)" }}
               >
                 {`№0${i + 1}`}
               </span>
               <span
-                className="flex-none flex items-center justify-center w-11 h-11 rounded-full bg-paper"
+                className="cc-why-icon flex-none flex items-center justify-center w-11 h-11 rounded-full bg-paper"
                 style={{ border: "1px solid rgba(194,154,91,0.55)" }}
               >
                 {it.icon}
@@ -373,10 +383,16 @@ function StepsSection() {
           {steps.map((s, i) => {
             const last = i === steps.length - 1;
             return (
-              <div key={i} className="text-center relative px-1">
+              <div
+                key={i}
+                className="cc-step-station text-center relative px-1"
+                data-rot={i + 1}
+              >
                 <div
                   className={
-                    "relative z-10 w-[68px] h-[68px] mx-auto mb-4 rounded-full flex items-center justify-center " +
+                    "cc-step-circle" +
+                    (last ? " cc-step-heart-glow" : "") +
+                    " relative z-10 w-[68px] h-[68px] mx-auto mb-4 rounded-full flex items-center justify-center " +
                     (last ? "" : "bg-paper")
                   }
                   style={{
@@ -387,9 +403,8 @@ function StepsSection() {
                     boxShadow: "0 6px 14px -10px rgba(34,41,58,0.35)",
                   }}
                 >
-                  {/* number badge attached to the circle */}
                   <span
-                    className="absolute -top-2 -right-1.5 min-w-[26px] h-[22px] px-1.5 rounded-full flex items-center justify-center text-[10px] font-bold tracking-[0.08em]"
+                    className="cc-step-badge absolute -top-2 -right-1.5 min-w-[26px] h-[22px] px-1.5 rounded-full flex items-center justify-center text-[10px] font-bold tracking-[0.08em] transition-colors"
                     style={{
                       background: last ? "var(--cc-terracotta)" : "var(--cc-ink)",
                       color: "var(--cc-paper)",
@@ -398,7 +413,9 @@ function StepsSection() {
                   >
                     {s.n}
                   </span>
-                  {s.icon}
+                  <span className={last ? "cc-step-heart inline-flex" : "inline-flex"}>
+                    {s.icon}
+                  </span>
                 </div>
                 <h4
                   className="text-[15px] md:text-[15.5px] leading-[1.22] text-ink italic max-w-[130px] mx-auto"

@@ -8,6 +8,8 @@ export default defineConfig({
     include: ["tests/**/*.test.ts", "tests/**/*.test.tsx"],
     exclude: ["tests/e2e/**"],
     fileParallelism: false,
+    testTimeout: 20000,
+    hookTimeout: 20000,
     coverage: { reporter: ["text", "html"], exclude: ["**/*.d.ts", "tests/**"] },
   },
   resolve: {

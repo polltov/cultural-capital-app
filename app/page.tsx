@@ -86,7 +86,7 @@ function Hero() {
 
       <div className="cc-reveal cc-delay-3 relative h-[340px] max-md:h-[300px]">
         <div
-          className="absolute top-0 right-0 w-[78%] rounded-[6px] overflow-hidden shadow-[0_24px_44px_-22px_rgba(34,41,58,0.55)]"
+          className="cc-hero-img absolute top-0 right-0 w-[76%] rounded-[6px] overflow-hidden shadow-[0_24px_44px_-22px_rgba(34,41,58,0.55)] transition-transform duration-500 ease-out will-change-transform hover:-rotate-[1.2deg] hover:scale-[1.02] hover:z-10"
           style={{ aspectRatio: "3 / 4" }}
         >
           <Image
@@ -109,9 +109,16 @@ function Hero() {
             }}
           />
           <span
-            className="absolute left-3.5 bottom-3 text-[11px] tracking-[0.14em] uppercase"
+            className="absolute inset-x-0 bottom-0 h-16 pointer-events-none"
             style={{
-              color: "rgba(251,246,240,0.9)",
+              background:
+                "linear-gradient(0deg, rgba(20,27,33,0.7), transparent)",
+            }}
+          />
+          <span
+            className="absolute left-3.5 bottom-3 text-[11px] tracking-[0.14em] uppercase z-10"
+            style={{
+              color: "rgba(251,246,240,0.96)",
               fontFamily: "var(--font-sans-ui)",
             }}
           >
@@ -119,20 +126,27 @@ function Hero() {
           </span>
         </div>
         <div
-          className="absolute -bottom-6 left-0 w-[55%] rounded-[6px] overflow-hidden shadow-[0_18px_36px_-20px_rgba(34,41,58,0.55)]"
+          className="cc-hero-img absolute bottom-14 left-0 w-[46%] rounded-[6px] overflow-hidden shadow-[0_18px_36px_-20px_rgba(34,41,58,0.55)] transition-transform duration-500 ease-out will-change-transform hover:rotate-[1.8deg] hover:-translate-y-1 hover:scale-[1.04] hover:z-20"
           style={{ aspectRatio: "4 / 5" }}
         >
           <Image
             src="/mockup/spas.jpg"
             alt="Спас на Крови"
             fill
-            sizes="(max-width: 768px) 40vw, 22vw"
+            sizes="(max-width: 768px) 40vw, 20vw"
             className="object-cover"
           />
           <span
-            className="absolute left-3 bottom-2.5 text-[11px] tracking-[0.14em] uppercase"
+            className="absolute inset-x-0 bottom-0 h-14 pointer-events-none"
             style={{
-              color: "rgba(251,246,240,0.9)",
+              background:
+                "linear-gradient(0deg, rgba(20,27,33,0.7), transparent)",
+            }}
+          />
+          <span
+            className="absolute left-3 bottom-2.5 text-[11px] tracking-[0.14em] uppercase z-10"
+            style={{
+              color: "rgba(251,246,240,0.96)",
               fontFamily: "var(--font-sans-ui)",
             }}
           >

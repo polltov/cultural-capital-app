@@ -86,7 +86,7 @@ function Hero() {
 
       <div className="cc-reveal cc-delay-3 relative h-[340px] max-md:h-[300px]">
         <div
-          className="cc-hero-img absolute top-0 right-0 w-[76%] rounded-[6px] overflow-hidden shadow-[0_24px_44px_-22px_rgba(34,41,58,0.55)] transition-transform duration-500 ease-out will-change-transform hover:-rotate-[1.2deg] hover:scale-[1.02] hover:z-10"
+          className="cc-hero-img absolute top-0 right-0 w-[76%] rounded-[6px] overflow-hidden shadow-[0_24px_44px_-22px_rgba(34,41,58,0.55)] transition-transform duration-500 ease-out will-change-transform hover:scale-[1.02]"
           style={{ aspectRatio: "3 / 4" }}
         >
           <Image
@@ -126,7 +126,7 @@ function Hero() {
           </span>
         </div>
         <div
-          className="cc-hero-img absolute bottom-14 left-0 w-[46%] rounded-[6px] overflow-hidden shadow-[0_18px_36px_-20px_rgba(34,41,58,0.55)] transition-transform duration-500 ease-out will-change-transform hover:rotate-[1.8deg] hover:-translate-y-1 hover:scale-[1.04] hover:z-20"
+          className="cc-hero-img absolute bottom-4 left-0 w-[46%] rounded-[6px] overflow-hidden shadow-[0_18px_36px_-20px_rgba(34,41,58,0.55)] transition-transform duration-500 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.04] hover:z-20"
           style={{ aspectRatio: "4 / 5" }}
         >
           <Image

@@ -12,7 +12,7 @@ const viewports = [
 
 const pages = [
   { name: "home", path: "/" },
-  { name: "tour-detail", path: "/tours/e2e" },
+  { name: "tour-detail", path: "/tours/old" },
   { name: "cart", path: "/cart" },
   { name: "admin-login", path: "/admin/login" },
 ];

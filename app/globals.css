@@ -41,10 +41,14 @@
 
 html, body { background: var(--cc-ivory); color: var(--cc-ink); }
 
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
 body {
   font-family: var(--font-pt-serif), "PT Serif", Georgia, serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+  padding-top: env(safe-area-inset-top);
 }
 
 /* ---------------- decorative blob shapes ---------------- */

@@ -36,7 +36,7 @@ export function PublicShell({ children, withBlobs = true }: Props) {
 
 function TopBar() {
   return (
-    <div className="relative z-10 flex justify-between items-center px-10 py-6 max-md:px-6 max-md:py-4 max-md:flex-wrap max-md:gap-3">
+    <div className="relative z-10 flex justify-between items-center px-10 py-6 max-md:px-6 max-md:pt-6 max-md:pb-4 max-md:flex-wrap max-md:gap-3">
       <Link href="/" aria-label="Культурная Столица" className="flex items-center gap-3.5 no-underline">
         <span className="relative flex-none block h-8 w-7 -translate-y-0.5">
           <span
@@ -60,7 +60,7 @@ function TopBar() {
           />
         </span>
         <span
-          className="whitespace-nowrap text-[28px] md:text-[32px] leading-none tracking-[-0.01em] text-ink -translate-y-1"
+          className="whitespace-nowrap text-[28px] md:text-[32px] leading-none tracking-[-0.01em] text-ink"
           style={{ fontFamily: "var(--font-display)", fontWeight: 500 }}
         >
           Культурная Столица

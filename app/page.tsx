@@ -214,59 +214,115 @@ function CatalogSection({
 /* -------------------- Why band -------------------- */
 function WhyBand() {
   const items = [
-    { icon: <IconGroup />, text: "Маленькие группы\nдо 8 человек" },
-    { icon: <IconBook />, text: "Информация подаётся\nчерез игры" },
-    { icon: <IconCompass />, text: "Авторские\nмаршруты" },
-    { icon: <IconWalk />, text: "Комфортный темп\nпрогулки" },
-    { icon: <IconArch />, text: "Историки-искусствоведы\nгиды по СПб" },
+    {
+      icon: <IconGroup />,
+      title: "Маленькие группы",
+      sub: "не больше восьми человек — чтобы услышать каждого",
+    },
+    {
+      icon: <IconBook />,
+      title: "Через игры и истории",
+      sub: "материал подаём так, чтобы дети сами хотели слушать дальше",
+    },
+    {
+      icon: <IconCompass />,
+      title: "Авторские маршруты",
+      sub: "не туристические тропы — свои сюжеты для каждой прогулки",
+    },
+    {
+      icon: <IconWalk />,
+      title: "Комфортный темп",
+      sub: "паузы, отдых, никаких «скорее-скорее» — гуляем в удовольствие",
+    },
+    {
+      icon: <IconArch />,
+      title: "Историки-искусствоведы",
+      sub: "профильное образование и любовь к Петербургу — обязательны",
+    },
   ];
   return (
     <section
-      className="relative z-10 mt-10 px-10 py-14 max-md:px-6"
+      className="relative z-10 mt-10 px-10 py-16 max-md:px-6"
       style={{
         background: "rgba(251,246,240,0.55)",
         borderTop: "1px solid rgba(194,154,91,0.4)",
         borderBottom: "1px solid rgba(194,154,91,0.4)",
       }}
     >
-      <div className="text-center mb-11">
-        <div
-          className="text-[11px] tracking-[0.28em] uppercase text-terracotta font-bold mb-2.5"
-          style={{ fontFamily: "var(--font-sans-ui)" }}
-        >
-          Про нас коротко
-        </div>
-        <div
-          className="text-[30px] md:text-[36px] leading-none text-ink"
-          style={{ fontFamily: "var(--font-antiqua)" }}
-        >
-          Почему{" "}
-          <em
-            className="italic text-terracotta"
-            style={{ fontFamily: "var(--font-display)", fontWeight: 500 }}
+      <div className="grid gap-10 md:grid-cols-[1fr_1.35fr] md:gap-14 md:items-start">
+        <div>
+          <div
+            className="text-[11px] tracking-[0.28em] uppercase text-terracotta font-bold mb-3"
+            style={{ fontFamily: "var(--font-sans-ui)" }}
           >
-            выбирают
-          </em>{" "}
-          нас
-        </div>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-        {items.map((it, i) => (
-          <div key={i} className="text-center px-1.5 py-2.5">
-            <div
-              className="w-[66px] h-[66px] mx-auto mb-4 rounded-full flex items-center justify-center bg-paper"
-              style={{ border: "1px solid rgba(194,154,91,0.5)" }}
-            >
-              {it.icon}
-            </div>
-            <h4
-              className="text-[15px] leading-[1.24] text-ink whitespace-pre-line"
-              style={{ fontFamily: "var(--font-antiqua)", fontWeight: 400 }}
-            >
-              {it.text}
-            </h4>
+            Про нас коротко
           </div>
-        ))}
+          <h2
+            className="text-[38px] md:text-[46px] leading-[1.02] text-ink"
+            style={{ fontFamily: "var(--font-antiqua)" }}
+          >
+            Пять причин,{" "}
+            <em
+              className="italic text-terracotta block"
+              style={{ fontFamily: "var(--font-display)", fontWeight: 500 }}
+            >
+              почему нас выбирают
+            </em>
+          </h2>
+          <p
+            className="mt-5 text-[15px] leading-[1.65] max-w-[320px]"
+            style={{
+              color: "var(--cc-slate)",
+              fontFamily: "var(--font-serif-body)",
+            }}
+          >
+            Мы не про заученные лекции. Про живой Петербург — тот, в который
+            хочется возвращаться и приводить своих детей.
+          </p>
+        </div>
+        <ol className="grid">
+          {items.map((it, i) => (
+            <li
+              key={i}
+              className="grid grid-cols-[42px_44px_1fr] items-center gap-4 md:gap-5 py-4"
+              style={{
+                borderTop:
+                  i === 0 ? "1px solid rgba(34,41,58,0.14)" : undefined,
+                borderBottom: "1px solid rgba(34,41,58,0.14)",
+              }}
+            >
+              <span
+                className="text-[11px] tracking-[0.18em] text-terracotta font-bold"
+                style={{ fontFamily: "var(--font-sans-ui)" }}
+              >
+                {`№0${i + 1}`}
+              </span>
+              <span
+                className="flex-none flex items-center justify-center w-11 h-11 rounded-full bg-paper"
+                style={{ border: "1px solid rgba(194,154,91,0.55)" }}
+              >
+                {it.icon}
+              </span>
+              <div>
+                <div
+                  className="text-[17px] md:text-[18.5px] leading-[1.2] text-ink"
+                  style={{ fontFamily: "var(--font-antiqua)" }}
+                >
+                  {it.title}
+                </div>
+                <div
+                  className="mt-1 text-[13px] leading-[1.5] max-md:hidden"
+                  style={{
+                    color: "var(--cc-slate)",
+                    fontFamily: "var(--font-serif-body)",
+                  }}
+                >
+                  {it.sub}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
@@ -275,16 +331,16 @@ function WhyBand() {
 /* -------------------- Steps -------------------- */
 function StepsSection() {
   const steps = [
-    { n: "01", title: "Покупаете\nбилет", icon: <IconTicket /> },
-    { n: "02", title: "Получаете\nписьмо", icon: <IconMail /> },
-    { n: "03", title: "Приходите\nк месту старта", icon: <IconPin /> },
-    { n: "04", title: "Гуляете\nи слушаете", icon: <IconRun /> },
-    { n: "05", title: "Получаете\nфотографии", icon: <IconCamera /> },
-    { n: "06", title: "Возвращаетесь\nснова", icon: <IconHeart /> },
+    { n: "01", title: "Покупаете билет", icon: <IconTicket /> },
+    { n: "02", title: "Получаете письмо", icon: <IconMail /> },
+    { n: "03", title: "Приходите к месту старта", icon: <IconPin /> },
+    { n: "04", title: "Гуляете и слушаете", icon: <IconRun /> },
+    { n: "05", title: "Получаете фотографии", icon: <IconCamera /> },
+    { n: "06", title: "Возвращаетесь снова", icon: <IconHeart /> },
   ];
   return (
-    <section className="relative z-10 px-10 pt-16 pb-5 max-md:px-6">
-      <div className="text-center mb-11">
+    <section className="relative z-10 px-10 pt-20 pb-8 max-md:px-6">
+      <div className="text-center mb-14">
         <div
           className="text-[11px] tracking-[0.28em] uppercase text-terracotta font-bold mb-2.5"
           style={{ fontFamily: "var(--font-sans-ui)" }}
@@ -304,38 +360,54 @@ function StepsSection() {
           </em>
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-6 gap-2.5">
-        {steps.map((s, i) => (
-          <div key={i} className="text-center relative px-1 py-2">
-            <div
-              className="text-[11px] tracking-[0.14em] text-terracotta font-bold mb-2"
-              style={{ fontFamily: "var(--font-sans-ui)" }}
-            >
-              {s.n}
-            </div>
-            <div
-              className={
-                "relative z-10 w-[68px] h-[68px] mx-auto mb-3.5 rounded-full flex items-center justify-center " +
-                (i === steps.length - 1 ? "" : "bg-paper")
-              }
-              style={{
-                border:
-                  i === steps.length - 1
-                    ? "1px solid #a34a2f"
-                    : "1px solid rgba(194,154,91,0.55)",
-                background: i === steps.length - 1 ? "#f7d9c9" : undefined,
-              }}
-            >
-              {s.icon}
-            </div>
-            <h4
-              className="text-[14px] leading-[1.24] text-ink whitespace-pre-line"
-              style={{ fontFamily: "var(--font-antiqua)" }}
-            >
-              {s.title}
-            </h4>
-          </div>
-        ))}
+      <div className="relative">
+        {/* Dashed journey line — desktop only, sits behind the station circles */}
+        <div
+          className="hidden md:block absolute cc-step-connector pointer-events-none"
+          style={{ top: 34, left: "8.3%", right: "8.3%", height: 1.5 }}
+          aria-hidden
+        />
+        <div className="relative grid grid-cols-2 md:grid-cols-6 gap-y-8 md:gap-2">
+          {steps.map((s, i) => {
+            const last = i === steps.length - 1;
+            return (
+              <div key={i} className="text-center relative px-1">
+                <div
+                  className={
+                    "relative z-10 w-[68px] h-[68px] mx-auto mb-4 rounded-full flex items-center justify-center " +
+                    (last ? "" : "bg-paper")
+                  }
+                  style={{
+                    border: last
+                      ? "1px solid #a34a2f"
+                      : "1px solid rgba(194,154,91,0.55)",
+                    background: last ? "#f7d9c9" : undefined,
+                    boxShadow: "0 6px 14px -10px rgba(34,41,58,0.35)",
+                  }}
+                >
+                  {/* number badge attached to the circle */}
+                  <span
+                    className="absolute -top-2 -right-1.5 min-w-[26px] h-[22px] px-1.5 rounded-full flex items-center justify-center text-[10px] font-bold tracking-[0.08em]"
+                    style={{
+                      background: last ? "var(--cc-terracotta)" : "var(--cc-ink)",
+                      color: "var(--cc-paper)",
+                      fontFamily: "var(--font-sans-ui)",
+                    }}
+                  >
+                    {s.n}
+                  </span>
+                  {s.icon}
+                </div>
+                <h4
+                  className="text-[15px] md:text-[15.5px] leading-[1.22] text-ink italic max-w-[130px] mx-auto"
+                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+                >
+                  {s.title}
+                </h4>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

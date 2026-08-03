@@ -120,19 +120,43 @@ export function CartClient() {
 
   if (items.length === 0) {
     return (
-      <div
-        className="rounded-lg px-6 py-5 text-[14px]"
-        style={{
-          background: "rgba(194,154,91,0.14)",
-          borderLeft: "2px solid var(--cc-sand)",
-          fontFamily: "var(--font-sans-ui)",
-          color: "var(--cc-slate)",
-        }}
-      >
-        Корзина пуста.{" "}
-        <Link href="/" className="text-terracotta font-bold hover:underline">
-          Вернуться в каталог →
-        </Link>
+      <div className="cc-ticket" data-photo="0" style={{ maxWidth: 520 }}>
+        <div
+          className="cc-ticket-photo cc-poster-empty"
+          style={{ aspectRatio: "auto", height: 160 }}
+        >
+          <div>
+            <div className="cc-poster-empty__eyebrow">Пусто</div>
+            <div
+              className="cc-poster-empty__title"
+              style={{ fontSize: "clamp(24px, 4vw, 34px)" }}
+            >
+              Здесь пока никого
+            </div>
+          </div>
+        </div>
+        <div className="cc-perf">
+          <span className="cc-stub">Билет ждёт</span>
+        </div>
+        <div
+          className="cc-ticket-info"
+          style={{ padding: "22px 26px 26px", textAlign: "center" }}
+        >
+          <p
+            className="text-[13.5px] leading-[1.6] mb-4 relative z-10"
+            style={{ color: "var(--cc-slate)", fontFamily: "var(--font-serif-body)" }}
+          >
+            Соберите путешествие: выберите экскурсию и удобное время —
+            билет займёт своё место здесь.
+          </p>
+          <Link
+            href="/"
+            className="inline-block bg-ink text-paper px-5 py-3 rounded-sm text-[11.5px] font-bold tracking-[0.14em] uppercase hover:bg-[#0e1319] relative z-10"
+            style={{ fontFamily: "var(--font-sans-ui)" }}
+          >
+            К экскурсиям →
+          </Link>
+        </div>
       </div>
     );
   }

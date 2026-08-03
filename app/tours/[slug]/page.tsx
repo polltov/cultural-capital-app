@@ -54,9 +54,12 @@ export default async function TourPage({
           data-photo={tour.photoUrl ? "1" : "0"}
           style={{ cursor: "default" }}
         >
-          {/* Photo strip */}
-          <div className="cc-ticket-photo" style={{ aspectRatio: "auto", height: 260 }}>
-            {tour.photoUrl && (
+          {/* Photo strip — full photo when uploaded, decorative poster otherwise */}
+          <div
+            className="cc-ticket-photo"
+            style={{ aspectRatio: "auto", height: tour.photoUrl ? 260 : 160 }}
+          >
+            {tour.photoUrl ? (
               <Image
                 src={tour.photoUrl}
                 alt={tour.title}
@@ -65,6 +68,15 @@ export default async function TourPage({
                 priority
                 className="object-cover"
               />
+            ) : (
+              <div className="cc-poster-empty absolute inset-0">
+                <div>
+                  <div className="cc-poster-empty__eyebrow">
+                    {tour.tag || "экскурсия"}
+                  </div>
+                  <div className="cc-poster-empty__title">{tour.title}</div>
+                </div>
+              </div>
             )}
             <span
               className="absolute top-3.5 left-3.5 z-10 bg-paper text-ink px-2.5 py-1 rounded-sm text-[10px] tracking-[0.2em] uppercase font-bold"

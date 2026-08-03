@@ -44,26 +44,26 @@ function Hero() {
     >
       <div>
         <div
-          className="text-[12px] tracking-[0.3em] uppercase text-terracotta font-bold mb-4.5"
+          className="cc-reveal cc-delay-1 text-[12px] tracking-[0.3em] uppercase text-terracotta font-bold mb-4.5"
           style={{ fontFamily: "var(--font-sans-ui)" }}
         >
           Санкт-Петербург · экскурсии для семьи
         </div>
         <h1
-          className="text-[54px] md:text-[62px] leading-[0.98] text-ink tracking-[-0.01em]"
+          className="cc-reveal cc-delay-2 text-[54px] md:text-[62px] leading-[0.98] text-ink tracking-[-0.01em]"
           style={{ fontFamily: "var(--font-display)", fontWeight: 500 }}
         >
           Петербург, <em className="italic text-terracotta">вдохновляющий</em>
           <br />с первого шага
         </h1>
         <p
-          className="mt-6 text-[16px] leading-[1.6] max-w-[420px]"
+          className="cc-reveal cc-delay-3 mt-6 text-[16px] leading-[1.6] max-w-[420px]"
           style={{ color: "var(--cc-slate)" }}
         >
           Авторские маршруты для детей и взрослых. Историки и искусствоведы,
           которые умеют говорить с детьми на одном языке.
         </p>
-        <div className="mt-7 flex gap-3.5 flex-wrap">
+        <div className="cc-reveal cc-delay-4 mt-7 flex gap-3.5 flex-wrap">
           <Link
             href="#catalog"
             className="bg-ink text-paper py-3.5 px-7 text-[13px] font-bold tracking-[0.06em] rounded-sm"
@@ -84,7 +84,7 @@ function Hero() {
         </div>
       </div>
 
-      <div className="relative h-[340px] max-md:h-[300px]">
+      <div className="cc-reveal cc-delay-3 relative h-[340px] max-md:h-[300px]">
         <div
           className="absolute top-0 right-0 w-[78%] rounded-[6px] overflow-hidden shadow-[0_24px_44px_-22px_rgba(34,41,58,0.55)]"
           style={{ aspectRatio: "3 / 4" }}
@@ -254,7 +254,7 @@ function WhyBand() {
         {items.map((it, i) => (
           <div key={i} className="text-center px-1.5 py-2.5">
             <div
-              className="w-[60px] h-[60px] mx-auto mb-4 rounded-full flex items-center justify-center bg-paper"
+              className="w-[66px] h-[66px] mx-auto mb-4 rounded-full flex items-center justify-center bg-paper"
               style={{ border: "1px solid rgba(194,154,91,0.5)" }}
             >
               {it.icon}
@@ -315,7 +315,7 @@ function StepsSection() {
             </div>
             <div
               className={
-                "relative z-10 w-16 h-16 mx-auto mb-3.5 rounded-full flex items-center justify-center " +
+                "relative z-10 w-[68px] h-[68px] mx-auto mb-3.5 rounded-full flex items-center justify-center " +
                 (i === steps.length - 1 ? "" : "bg-paper")
               }
               style={{
@@ -546,11 +546,11 @@ function FaqSection() {
 
 /* -------------------- Inline SVG icons (from mockup) -------------------- */
 const svgCls =
-  "w-[30px] h-[30px] stroke-[#5e6b50] fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]";
+  "w-[34px] h-[34px] stroke-[#5e6b50] fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]";
 const stepCls =
-  "w-[30px] h-[30px] stroke-[#5e6b50] fill-none stroke-[1.5] [stroke-linecap:round] [stroke-linejoin:round]";
+  "w-[34px] h-[34px] stroke-[#5e6b50] fill-none stroke-[1.5] [stroke-linecap:round] [stroke-linejoin:round]";
 const stepLastCls =
-  "w-[30px] h-[30px] stroke-terracotta fill-none stroke-[1.5] [stroke-linecap:round] [stroke-linejoin:round]";
+  "w-[34px] h-[34px] stroke-terracotta fill-none stroke-[1.5] [stroke-linecap:round] [stroke-linejoin:round]";
 
 function IconGroup() {
   return (

@@ -56,6 +56,7 @@ export function TourCard(p: Props) {
     <Link
       href={`/tours/${p.slug}`}
       data-photo={hasPhoto ? "1" : "0"}
+      data-index={p.index ?? 0}
       className="cc-ticket group no-underline text-ink"
     >
       <div className="cc-ticket-photo">

@@ -242,13 +242,14 @@ function WhyBand() {
   ];
   return (
     <section
-      className="relative z-10 mt-10 px-10 py-16 max-md:px-6"
+      className="relative z-10 mt-10 py-16 mx-[calc(50%-50vw)] w-screen"
       style={{
         background: "rgba(251,246,240,0.55)",
         borderTop: "1px solid rgba(194,154,91,0.4)",
         borderBottom: "1px solid rgba(194,154,91,0.4)",
       }}
     >
+     <div className="max-w-[1000px] mx-auto px-10 max-md:px-6">
       <div className="grid gap-10 md:grid-cols-[1fr_1.35fr] md:gap-14 md:items-start">
         <div>
           <div
@@ -324,6 +325,7 @@ function WhyBand() {
           ))}
         </ol>
       </div>
+     </div>
     </section>
   );
 }

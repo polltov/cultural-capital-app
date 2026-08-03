@@ -120,7 +120,7 @@ export function CartClient() {
 
   if (items.length === 0) {
     return (
-      <div className="cc-ticket" data-photo="0" style={{ maxWidth: 520 }}>
+      <div className="cc-ticket mx-auto my-6" data-photo="0" style={{ maxWidth: 520 }}>
         <div
           className="cc-ticket-photo cc-poster-empty"
           style={{ aspectRatio: "auto", height: 160 }}

@@ -23,7 +23,7 @@ export function CartClient() {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState<HydratedCartItem[]>([]);
   const [removed, setRemoved] = useState<Array<{ slotId: string; reason: string }>>([]);
-  const [form, setForm] = useState({ name: "", phone: "", email: "" });
+  const [form, setForm] = useState({ name: "", phone: "+7 ", email: "" });
   const [error, setError] = useState<string | null>(null);
   const [submitting, startSubmit] = useTransition();
 
@@ -298,9 +298,24 @@ export function CartClient() {
           </span>
           <input
             required
-            pattern="[+\d\s()\-]{6,}"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            pattern="\+7\s?[\d\s()\-]{10,}"
             value={form.phone}
-            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            onChange={(e) => {
+              const v = e.target.value;
+              setForm({ ...form, phone: v.startsWith("+7") ? v : "+7 " });
+            }}
+            onFocus={(e) => {
+              if (!form.phone.trim() || form.phone === "+7") {
+                setForm({ ...form, phone: "+7 " });
+                requestAnimationFrame(() => {
+                  const el = e.currentTarget;
+                  el.setSelectionRange(el.value.length, el.value.length);
+                });
+              }
+            }}
             className="mt-1.5 w-full px-3 py-2.5 rounded-sm bg-ivory text-ink outline-none focus:border-terracotta transition-colors"
             style={{
               border: "1px solid rgba(34,41,58,0.25)",
